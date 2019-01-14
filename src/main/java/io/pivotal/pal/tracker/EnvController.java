@@ -13,18 +13,13 @@ public class EnvController {
     private final String port;
     private final String memoryLimit;
     private final String cfInstanceIndex;
-    private final String cfInstanceAddress;
+    private final String cfInstanceAddr;
 
-    public EnvController(
-            @Value("${PORT:NOT SET}") String port,
-            @Value("${MEMORY_LIMIT:NOT SET}") String memoryLimit,
-            @Value("${CF_INSTANCE_INDEX:NOT SET}") String cfInstanceIndex,
-            @Value("${CF_INSTANCE_ADDR:NOT SET}") String cfInstanceAddress
-    ) {
+    public EnvController(@Value("${port:NOT SET}") String port, @Value("${MEMORY_LIMIT:NOT SET}") String memoryLimit, @Value("${CF_INSTANCE_INDEX:NOT SET}") String cfInstanceIndex, @Value("${cf.instance.addr:NOT SET}") String cfInstanceAddr) {
         this.port = port;
         this.memoryLimit = memoryLimit;
         this.cfInstanceIndex = cfInstanceIndex;
-        this.cfInstanceAddress = cfInstanceAddress;
+        this.cfInstanceAddr = cfInstanceAddr;
     }
 
     @GetMapping("/env")
@@ -34,7 +29,7 @@ public class EnvController {
         env.put("PORT", port);
         env.put("MEMORY_LIMIT", memoryLimit);
         env.put("CF_INSTANCE_INDEX", cfInstanceIndex);
-        env.put("CF_INSTANCE_ADDR", cfInstanceAddress);
+        env.put("CF_INSTANCE_ADDR", cfInstanceAddr);
 
         return env;
     }
